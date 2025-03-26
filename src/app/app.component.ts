@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { RegistroComponent } from './registro/registro.component';
-import { MenuComponent } from './menu/menu.component';
-import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
-import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './modules/registro/registro.component';
+import { MenuComponent } from './modules/menu/menu.component';
+import { PasswordRecoveryComponent } from './modules/password-recovery/password-recovery.component';
+import { LoginComponent } from './modules/login/login.component';
 
 @Component({
   selector: 'app-root',
