@@ -5,7 +5,7 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background: linear-gradient(90deg, rgba(155,155,155,1) 0%, rgba(79,79,79,1) 35%);
+    background: linear-gradient(180deg, rgba(155,155,155,1) 0%, rgba(79,79,79,1) 35%);
 }
 .Titulo{
     text-align: center;
