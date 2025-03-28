@@ -14,8 +14,5 @@ export class LoginComponent {
   constructor(private router : Router){
 
   }
-  navigateToHome() {
-    this.router.navigateByUrl("home");  // navegacion al home
-  }
 
 }

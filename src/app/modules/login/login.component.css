@@ -38,6 +38,12 @@ input {
     box-sizing: border-box;
 }
 
+.Link{
+    text-decoration-color: blue;
+    text-decoration: underline;
+    text-align: center;  
+}
+
 button {
     background-color: #9c9c9c;
     color: rgb(0, 0, 0);
