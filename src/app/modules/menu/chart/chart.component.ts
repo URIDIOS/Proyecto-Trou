@@ -11,7 +11,7 @@ Chart.register(...registerables);
 })
 export class ChartComponent implements OnInit{
   public config: any = {
-    type: 'doughnut',
+    type: 'bar',
     data: {
       labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
         'Jul', 'Agto', 'Sept', 'Oct', 'Nov', 'Dic'],
