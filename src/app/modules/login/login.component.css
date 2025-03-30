@@ -39,9 +39,19 @@ input {
 }
 
 .Link{
-    text-decoration-color: blue;
+    padding: 5px;
+    color: blue;
+    text-decoration:none;
     text-decoration: underline;
     text-align: center;  
+}
+.Link2{
+    padding: 10px;
+    color: blue ;
+    text-decoration:none;
+    text-decoration: underline;
+    text-align: center; 
+
 }
 
 button {

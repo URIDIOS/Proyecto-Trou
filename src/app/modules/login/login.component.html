@@ -10,7 +10,7 @@
     <div class="form-container">
         <form id="loginForm" onsubmit="return validarFormulario()">
             <div class="Titulo">
-                <h1>Inicio De Sesión</h1>
+                <h1>Inicio de sesión</h1>
             </div>
             
             <div class="form-group">
@@ -24,26 +24,13 @@
             </div>
             
             <div class="Link">
-                <a href="/registro">No tengo una cuenta. Registrarse</a>
+                <a (click)="RedirecRegistro()">¿No tienes cuenta?. Registrarse</a>
             </div>   
-              
-            <button type="submit" (click)="navigateToHome()">Entrar</button>
+            <div class="Link2">
+                <a (click)="RedirecContrasena()">Olvide mi contraseña</a>
+            </div>  
+            <button type="submit" (click)="RedirecMenu()">Entrar</button>
         </form>
     </div>
-
-    <script>
-        function validarFormulario() {
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
-    
-            if (email === '' || password === '') {
-                alert('Por favor, completa todos los campos.');
-                return false;
-            }
-    
-            alert('Inicio de sesión exitoso');
-            return true;
-        }
-    </script>
 </body>
 </html>

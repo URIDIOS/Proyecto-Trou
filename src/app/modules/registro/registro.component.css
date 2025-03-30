@@ -38,10 +38,11 @@ input {
     box-sizing: border-box;
 }
 .Link{
+    padding: 10px;
+    color: blue;
     text-decoration-color: blue;
     text-decoration: underline;
     text-align: center;
-    
 }
 
 button {

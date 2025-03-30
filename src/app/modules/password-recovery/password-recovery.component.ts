@@ -5,15 +5,13 @@ import { Router, RouterLink } from '@angular/router';
   selector: 'app-password-recovery',
   templateUrl: './password-recovery.component.html',
   styleUrls: ['./password-recovery.component.css'],
-  imports : [RouterLink]
+  imports : []
 })
 export class PasswordRecoveryComponent {
   
-    constructor(private router : Router){
-
-    }
+    constructor(private router : Router){}
     navigateToLogin() {
-      this.router.navigateByUrl("login");  // navegacion al login
+      this.router.navigate(['/login']);  // navegacion al login
     }
 
 }

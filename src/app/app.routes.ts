@@ -6,6 +6,8 @@ import { MenuComponent } from './modules/menu/menu.component';
 
 export const routes: Routes = [
 
+    { path: '', component: LoginComponent },
+
     { path: 'registro', component: RegistroComponent },
 
     { path: 'password-recovery', component: PasswordRecoveryComponent},
