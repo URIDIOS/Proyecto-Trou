@@ -1,71 +1,64 @@
-import { Component, inject, Input, input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../Service/usuario.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Usuario } from '../api';
 
 @Component({
   selector: 'app-registro',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css'
 })
 
 export class RegistroComponent implements OnInit {
   
-  @Input('id') _id!: number; 
+
   private usuarioService = inject(UsuarioService);
+  private router = inject(Router);
   public formBuild = inject(FormBuilder);
 
-  public formUsuario:FormGroup = this.formBuild.group({
-    nombre:[''],
-    correo:[''],   
-    contraseña:[''],
-  })
+  public formUsuario : FormGroup;
+
+  constructor() {
+    this.formUsuario = this.formBuild.group({
+      nombre: ['', Validators.required],   
+      correo: ['', [Validators.required, Validators.email]],   
+      contraseña: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
 
   ngOnInit(): void {
   }
 
-  guardar(){
-    const objeto : Usuario={
-      _id : this._id,
-      nombre : this.formUsuario.value.nombre,
-      correo : this.formUsuario.value.correo,
-      contraseña : this.formUsuario.value.contraseña ,
+  guardar() {
+    if (this.formUsuario.invalid) {
+      alert("Please fill in all required fields correctly.");
+      return;
     }
-    if(this._id == 0){
-      this.usuarioService.crear(objeto).subscribe({
-        next:(data)=>{
-          if(data.isRuccess){
-            this.router.navigate(['/login'])
-          }
-          else{
-            alert("Error al registrar")
-          }
-        },
-        error:(err)=>{
-          console.log(err.message)
-        }
-      })
-    }
-    else{
-      this.usuarioService.edittar(objeto).subscribe({
-        next:(data)=>{
-          if(data.isRuccess){
-            this.router.navigate(['/login'])
-          }
-          else{
-            alert("Error al editar")
-          }
-        },
-        error:(err)=>{
-          console.log(err.message)
-        }
-      })
-    }
-  }
 
-  constructor(private router:Router){}
+    const objeto: Usuario = {
+      _id: 0, // Set `_id` dynamically if needed
+      nombre: this.formUsuario.value.nombre,
+      correo: this.formUsuario.value.correo,
+      contraseña: this.formUsuario.value.contraseña,
+    };
+
+    console.log("Objeto a guardar:", objeto); // Debugging
+
+    this.usuarioService.crear(objeto).subscribe({
+      next: (data) => {
+        if (data.isRuccess) {
+          this.router.navigate(['/login']);
+        } else {
+          alert("Error al registrar");
+        }
+      },
+      error: (err) => {
+        console.error("Error en el registro:", err.message);
+      }
+    });
+  }
 
   RedirecLogin(){
     this.router.navigate(['/login']) //redirecciona al home
