@@ -1,34 +1,23 @@
 <div class="form-container">
-    <form (ngSubmit)="registrarUsuario()" #registerForm="ngForm">
+  <form id="registroForm" [formGroup]="formUsuario" (ngSubmit)="guardar()">
       <div class="Titulo">
-        <h1>Registro</h1>
+          <h1>Registro</h1>
       </div>
-  
       <div class="form-group">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required [(ngModel)]="nombre" />
-      </div>
-  
+          <label for="nombre">Nombre completo:</label>
+          <input type="text" formControlName="nombre" required>
+      </div>         
       <div class="form-group">
-        <label for="email">Correo electrónico:</label>
-        <input type="email" id="email" name="email" required [(ngModel)]="email" />
-      </div>
-  
+          <label for="email">Correo electrónico:</label>
+          <input type="email" formControlName="correo" required>
+      </div>          
       <div class="form-group">
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required [(ngModel)]="password" />
-      </div>
-  
-      <div class="form-group">
-        <label for="confirmPassword">Confirmar Contraseña:</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" required [(ngModel)]="confirmPassword" />
-      </div>
-  
+          <label for="password">Contraseña:</label>
+          <input type="password" formControlName="contraseña" required>
+      </div>                  
       <div class="Link">
-        <a (click)="RedirecLogin()">¿Ya tienes cuenta? Iniciar sesión</a>
-      </div>
-  
-      <button type="submit">Registrarse</button>
-    </form>
-  </div>
-  
+          <a (click)="RedirecLogin()">Ya tengo una cuenta. Iniciar sesión</a>
+      </div>     
+      <button type="submit">Registrar</button>
+  </form>
+</div>
