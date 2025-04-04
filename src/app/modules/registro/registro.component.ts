@@ -1,66 +1,54 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsuarioService } from '../../Service/usuario.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Usuario } from '../api';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RegistroService } from '../../services/registro.service';
 
 @Component({
   selector: 'app-registro',
-  imports: [ReactiveFormsModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './registro.component.html',
-  styleUrl: './registro.component.css'
+  styleUrls: ['./registro.component.css']
 })
+export class RegistroComponent {
+  nombre: string = '';
+  email: string = '';
+  password: string = '';
+  confirmPassword: string = '';
 
-export class RegistroComponent implements OnInit {
-  
+  constructor(private router: Router, private registroService: RegistroService) {}
 
-  private usuarioService = inject(UsuarioService);
-  private router = inject(Router);
-  public formBuild = inject(FormBuilder);
-
-  public formUsuario : FormGroup;
-
-  constructor() {
-    this.formUsuario = this.formBuild.group({
-      nombre: ['', Validators.required],   
-      correo: ['', [Validators.required, Validators.email]],   
-      contraseña: ['', [Validators.required, Validators.minLength(6)]],
-    });
-  }
-
-  ngOnInit(): void {
-  }
-
-  guardar() {
-    if (this.formUsuario.invalid) {
-      alert("Please fill in all required fields correctly.");
+  registrarUsuario() {
+    if (this.password !== this.confirmPassword) {
+      alert('Las contraseñas no coinciden');
       return;
     }
 
-    const objeto: Usuario = {
-      _id: 0, // Set `_id` dynamically if needed
-      nombre: this.formUsuario.value.nombre,
-      correo: this.formUsuario.value.correo,
-      contraseña: this.formUsuario.value.contraseña,
+    const nuevoRegistro = {
+      nombre: this.nombre,
+      email: this.email,
+      password: this.password
     };
 
-    console.log("Objeto a guardar:", objeto); // Debugging
-
-    this.usuarioService.crear(objeto).subscribe({
-      next: (data) => {
-        if (data.isRuccess) {
-          this.router.navigate(['/login']);
-        } else {
-          alert("Error al registrar");
-        }
+    this.registroService.createRegistro(nuevoRegistro).subscribe({
+      next: (response) => {
+        console.log('Registro exitoso', response);
+        this.RedirecMenu();
       },
-      error: (err) => {
-        console.error("Error en el registro:", err.message);
+      error: (error) => {
+        console.log(nuevoRegistro)
+        console.error('Error al registrar:', error);
+        alert('Hubo un error al registrar. Revisa los datos o la conexión.');
       }
     });
   }
 
-  RedirecLogin(){
-    this.router.navigate(['/login']) //redirecciona al home
-  }  
+  RedirecLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  RedirecMenu() {
+    this.router.navigate(['/menu']);
+  }
 }
