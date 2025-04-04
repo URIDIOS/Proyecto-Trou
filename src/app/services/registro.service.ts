@@ -13,7 +13,7 @@ export interface Registro {
   providedIn: 'root'
 })
 export class RegistroService {
-  private apiUrl = 'http://localhost:44314/api/Registro'; // URL de la API correcta
+  private apiUrl = 'https://localhost:7109/api/Registro';
 
   constructor(private http: HttpClient) {}
 
