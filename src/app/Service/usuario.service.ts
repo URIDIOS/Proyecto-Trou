@@ -10,7 +10,7 @@ import { ResponceApi } from '../modules/respinceApi';
 export class UsuarioService {
 
   private http = inject(HttpClient);
-  private apiUrl : string= appsettings.apiUrl + "Registro";
+  private apiUrl : string= "http://localhost:5147" + appsettings.apiUrl + "Registro";
 
   constructor() { }
 
