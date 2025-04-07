@@ -13,7 +13,7 @@ export interface Registro {
   providedIn: 'root'
 })
 export class RegistroService {
-  private apiUrl = 'http://localhost:44314/api/Registro'; // URL de la API correcta   //EJECUTAR CON EL CODIGO SIGUIENTE "ng serve --proxy-config proxy.conf.json"
+  private apiUrl = 'http://localhost:5147/api/Registro'; // URL de la API correcta   //EJECUTAR CON EL CODIGO SIGUIENTE "ng serve --proxy-config proxy.conf.json"
 
   constructor(private http: HttpClient) {}
 
