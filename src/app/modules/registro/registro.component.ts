@@ -1,4 +1,4 @@
-import { Component, inject, Input, input, OnInit } from '@angular/core';
+import { Component, inject, Input, input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../Service/usuario.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -9,7 +9,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-registro',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css']
+  styleUrls: ['./registro.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class RegistroComponent implements OnInit {
