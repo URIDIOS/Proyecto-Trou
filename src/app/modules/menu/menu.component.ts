@@ -12,17 +12,10 @@ export class MenuComponent {
   username: string = "Miguel Octavio";
   msgestado: string = "Abrir";
 
-  estado: boolean = false;  
+  constructor(private router : Router){}
 
-  checkbutton(){
-    if (this.estado == true){
-      this.estado = false;
-      this.msgestado = "Cerrar";
-    }
-    else
-    {
-      this.estado = true;
-      this.msgestado = "Abrir";
-    }
-  }
+  RedirecHistorial(){
+    this.router.navigate(['/historial'])
+  }  
+
 }
